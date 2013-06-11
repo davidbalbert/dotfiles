@@ -1,0 +1,8 @@
+*.swp
+*.o
+*.bundle
+vim/bundle/command-t/ruby/command-t/Makefile
+vim/.netrwhist
+vim/tmp/*
+*.so
+*.log

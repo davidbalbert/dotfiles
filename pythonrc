@@ -1,0 +1,6 @@
+import readline
+
+# Disable useless tab file completion if we're using a python compiled from homebrew.
+if not "libedit" in readline.__doc__:
+    readline.parse_and_bind('set disable-completion on')
+
