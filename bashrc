@@ -80,3 +80,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 if [[ -f /usr/local/bin/opam ]]; then
   eval `opam config env`
 fi
+
+# Racket
+PATH=$PATH:/Applications/Racket\ v5.3.6/bin
