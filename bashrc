@@ -83,3 +83,6 @@ fi
 
 # Racket
 PATH=$PATH:/Applications/Racket\ v5.3.6/bin
+
+# Urbit
+export URBIT_HOME=/Users/david/Development/urbit/urb
