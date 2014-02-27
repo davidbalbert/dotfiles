@@ -18,12 +18,6 @@ fi
 
 set -o vi
 
-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
-
-if [[ -s /Users/david/.rvm/scripts/rvm ]] ; then source /Users/david/.rvm/scripts/rvm ; fi
-
-export PYTHONSTARTUP=~/.pythonrc
-
 function up() { # cd to root of repository
   old_pwd="$PWD";
   while [ 1 ]; do
@@ -82,7 +76,10 @@ if [[ -f /usr/local/bin/opam ]]; then
 fi
 
 # Racket
-PATH=$PATH:/Applications/Racket\ v5.3.6/bin
+PATH=$PATH:/Applications/Racket\ v6.0/bin
 
 # Urbit
 export URBIT_HOME=/Users/david/Development/urbit/urb
+
+if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+if [[ -s $HOME/.rvm/scripts/completion ]] ; then source $HOME/.rvm/scripts/completion ; fi
