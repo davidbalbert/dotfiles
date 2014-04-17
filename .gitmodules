@@ -28,3 +28,6 @@
 [submodule "vim/bundle/vim-addon-mw-utils"]
 	path = vim/bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "vim/bundle/vim-javascript"]
+	path = vim/bundle/vim-javascript
+	url = https://github.com/pangloss/vim-javascript.git
