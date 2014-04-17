@@ -1,6 +1,6 @@
 set nocompatible                  " Must come first because it changes other options.
 
-call pathogen#infect()
+execute pathogen#infect()
 
 syntax enable                     " Turn on syntax highlighting.
 colorscheme grb256
