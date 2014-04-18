@@ -3,7 +3,6 @@ set nocompatible                  " Must come first because it changes other opt
 execute pathogen#infect()
 
 syntax enable                     " Turn on syntax highlighting.
-colorscheme grb256
 
 filetype plugin indent on         " Turn on file type detection.
 
