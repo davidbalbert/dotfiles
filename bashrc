@@ -82,4 +82,4 @@ PATH=$PATH:/Applications/Racket\ v6.0.1/bin
 export URBIT_HOME=/Users/david/Development/urbit/urb
 
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
-if [[ -s $HOME/.rvm/scripts/completion ]] ; then source $HOME/.rvm/scripts/completion ; fi
+#if [[ -s $HOME/.rvm/scripts/completion ]] ; then source $HOME/.rvm/scripts/completion ; fi
