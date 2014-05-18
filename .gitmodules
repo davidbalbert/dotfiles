@@ -10,9 +10,6 @@
 [submodule "vim/bundle/clang_complete"]
 	path = vim/bundle/clang_complete
 	url = https://github.com/Rip-Rip/clang_complete.git
-[submodule "vim/bundle/vim-snipmate"]
-	path = vim/bundle/vim-snipmate
-	url = https://github.com/garbas/vim-snipmate.git
 [submodule "vim/bundle/VimOrganizer"]
 	path = vim/bundle/VimOrganizer
 	url = https://github.com/hsitz/VimOrganizer.git
