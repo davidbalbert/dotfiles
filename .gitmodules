@@ -28,3 +28,6 @@
 [submodule "vim/bundle/vim-snippits"]
 	path = vim/bundle/vim-snippits
 	url = https://github.com/honza/vim-snippets.git
+[submodule "vim/bundle/paredit.vim"]
+	path = vim/bundle/paredit.vim
+	url = https://github.com/vim-scripts/paredit.vim.git
