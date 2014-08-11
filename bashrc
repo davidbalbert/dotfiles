@@ -76,7 +76,7 @@ if [[ -f /usr/local/bin/opam ]]; then
 fi
 
 # Racket
-PATH=$PATH:/Applications/Racket\ v6.0.1/bin
+PATH=$PATH:/Applications/Racket\ v6.1/bin
 
 # Urbit
 export URBIT_HOME=/Users/david/Development/urbit/urb
