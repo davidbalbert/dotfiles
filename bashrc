@@ -60,7 +60,6 @@ if [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
 fi
 
 # Go
-export GOROOT=`brew --prefix go`
 export GOPATH=~/Development/gopath
 
 # plan9port
@@ -73,6 +72,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # OCaml
 if [[ -f /usr/local/bin/opam ]]; then
   eval `opam config env`
+  # OPAM configuration
+  . /Users/david/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 fi
 
 # Racket
