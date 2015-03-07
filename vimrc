@@ -85,3 +85,5 @@ augroup filetype_org
   au! BufRead,BufWrite,BufWritePost,BufNewFile *.org
   au BufEnter *.org            call org#SetOrgFileType()
 augroup END
+
+let g:CommandTTraverseSCM="pwd"

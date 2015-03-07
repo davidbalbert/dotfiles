@@ -60,7 +60,7 @@ if [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
 fi
 
 # Go
-export GOPATH=~/Development/gopath
+export GOPATH=~/Development/godir
 
 # plan9port
 PLAN9=/usr/local/plan9 export PLAN9
@@ -78,9 +78,6 @@ fi
 
 # Racket
 PATH=$PATH:/Applications/Racket\ v6.1/bin
-
-# Urbit
-export URBIT_HOME=/Users/david/Development/urbit/urb
 
 # Cabal
 PATH=$HOME/.cabal/bin:$PATH
