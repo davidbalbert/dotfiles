@@ -1,0 +1,14 @@
+#!/usr/bin/env rc
+
+TERM=dumb
+PAGER=cat
+path=($home/bin/acme $path)
+PATH=$home/bin/acme:$PATH
+acme=true # used in ~/.bashrc
+
+if(test -f $home/acme.dump) {
+	acme -bam /mnt/acme -l $home/acme.dump $* &
+}
+if not {
+	acme -bam /mnt/acme $* &
+}

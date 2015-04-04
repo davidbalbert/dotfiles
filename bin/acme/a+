@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+$stdin.each_line do |l|
+  puts "\t#{l}"
+end

@@ -1,4 +1,4 @@
-export PATH=/Applications/Postgres.app/Contents/Versions/9.3/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/bin:/Applications/Postgres.app/Contents/Versions/9.3/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export SVN_EDITOR=vim
 export LC_CTYPE=en_US.UTF-8
 export EDITOR=vim
@@ -83,3 +83,15 @@ PATH=$PATH:/Applications/Racket\ v6.1/bin
 PATH=$HOME/.cabal/bin:$PATH
 
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+
+
+# Run if acme is running ($acme is set by ~/bin/a)
+if [ "$acme" = "true" ]; then
+  PS1="\$ "
+
+  cd ()
+  {
+    __zsh_like_cd cd "$@"
+    awd
+  }
+fi
