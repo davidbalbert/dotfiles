@@ -88,6 +88,7 @@ if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
 # Run if acme is running ($acme is set by ~/bin/a)
 if [ "$acme" = "true" ]; then
   PS1="\$ "
+  EDITOR=E
 
   cd ()
   {
