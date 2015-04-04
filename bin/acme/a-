@@ -1,9 +1,3 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env rc
 
-$stdin.each_line do |l|
-  if l[0] == "\t"
-    puts l[1..-1]
-  else
-    puts l
-  end
-end
+9 sed 's/^	//'
