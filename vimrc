@@ -43,9 +43,9 @@ set clipboard=unnamed             " use system clipboard
 set completeopt=menu,menuone,longest
 
 " UNCOMMENT TO USE
-set tabstop=2                    " Global tab width.
-set shiftwidth=2                 " And again, related.
-set expandtab                    " Use spaces instead of tabs
+"set tabstop=2                    " Global tab width.
+"set shiftwidth=2                 " And again, related.
+"set expandtab                    " Use spaces instead of tabs
 set smarttab
 
 set laststatus=2                  " Show the status line all the time
