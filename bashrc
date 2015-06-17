@@ -84,6 +84,9 @@ PATH=$HOME/.cabal/bin:$PATH
 
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
 
+if [[ -f /usr/local/bin/aws ]]; then
+  complete -C aws_completer aws
+fi
 
 # Run if acme is running ($acme is set by ~/bin/a)
 if [ "$acme" = "true" ]; then
