@@ -5,7 +5,23 @@ export EDITOR=vim
 
 alias ll='ls -alhFG'
 alias git=hub
-alias dev='cd ~/Development'
+
+function dev() {
+  if [ $# == 0 ]
+  then
+    cd ~/Development
+  else
+    cd ~/Development/$1
+  fi
+}
+
+function _dev() {
+  local cur
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  COMPREPLY=( $(compgen -W "$(ls ~/Development)" -- $cur) )
+}
+
+complete -F _dev dev
 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
