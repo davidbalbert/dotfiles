@@ -18,7 +18,12 @@ function dev() {
 function _dev() {
   local cur
   cur="${COMP_WORDS[COMP_CWORD]}"
-  COMPREPLY=( $(compgen -W "$(ls ~/Development)" -- $cur) )
+
+  if [ $COMP_CWORD == 1 ]; then
+    COMPREPLY=( $(compgen -W "$(ls ~/Development)" -- $cur) )
+  else
+    COMPREPLY=()
+  fi
 }
 
 complete -F _dev dev
@@ -29,7 +34,7 @@ fi
 
 # ec2 setup
 if [ -f ~/.ec2/setup_ec2 ]; then
-    source ~/.ec2/setup_ec2
+  source ~/.ec2/setup_ec2
 fi
 
 set -o vi
@@ -61,7 +66,7 @@ rvm_path() {
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
-PS1='$(rvm_path)\h:\w$(__git_ps1 " [%s]")\$ '
+PS1='\h:\w$(__git_ps1 " [%s]")\$ '
 
 # node.js
 if which node >/dev/null 2>&1; then
@@ -76,7 +81,7 @@ if [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
 fi
 
 # Go
-export GOPATH=~/Development/godir
+export GOPATH=~/Development/gopath
 
 # plan9port
 PLAN9=/usr/local/plan9 export PLAN9
@@ -93,10 +98,14 @@ if [[ -f /usr/local/bin/opam ]]; then
 fi
 
 # Racket
-PATH=$PATH:/Applications/Racket\ v6.1/bin
+if [[ -d /Applications/Racket\ v6.1/bin ]]; then
+  PATH=$PATH:/Applications/Racket\ v6.1/bin
+fi
 
 # Cabal
-PATH=$HOME/.cabal/bin:$PATH
+if [[ -d $HOME/.cabal/bin ]]; then
+  PATH=$HOME/.cabal/bin:$PATH
+fi
 
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
 

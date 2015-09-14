@@ -87,4 +87,7 @@ augroup filetype_org
   au BufEnter *.org            call org#SetOrgFileType()
 augroup END
 
+autocmd BufNewFile,BufRead *.es6 let b:jsx_ext_found = 1
+autocmd BufNewFile,BufRead *.es6 set filetype=javascript
+
 let g:CommandTTraverseSCM="pwd"
