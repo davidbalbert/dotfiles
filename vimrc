@@ -91,3 +91,13 @@ autocmd BufNewFile,BufRead *.es6 let b:jsx_ext_found = 1
 autocmd BufNewFile,BufRead *.es6 set filetype=javascript
 
 let g:CommandTTraverseSCM="pwd"
+
+function! StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+" delete trailing whitespace before save
+autocmd BufWritePre * :call StripTrailingWhitespaces()
