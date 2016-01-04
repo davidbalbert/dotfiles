@@ -2,11 +2,14 @@
 
 require 'ipaddr'
 
-ips, opts = ARGV.partition do |s|
+ips  = []
+opts = []
+
+ARGV.each do |s|
   begin
-    IPAddr.new(s)
+    ips << IPAddr.new(s)
   rescue IPAddr::InvalidAddressError
-    false
+    opts << s
   end
 end
 
@@ -15,6 +18,4 @@ if ips.size < 1
   exit 1
 end
 
-reversed = ips.map { |s| IPAddr.new(s).reverse }
-
-exec("dig PTR #{reversed.join(" ")} #{opts.join(" ")}")
+exec("dig PTR #{ips.map(&:reverse).join(" ")} #{opts.join(" ")}")
