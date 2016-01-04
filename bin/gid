@@ -15,4 +15,6 @@ if ips.size < 1
   exit 1
 end
 
-exec("dig PTR #{IPAddr.new(ips[0]).reverse} #{opts.join(" ")}")
+reversed = ips.map { |s| IPAddr.new(s).reverse }
+
+exec("dig PTR #{reversed.join(" ")} #{opts.join(" ")}")
