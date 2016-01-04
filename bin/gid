@@ -1,16 +1,18 @@
 #!/usr/bin/env ruby
 
-IP_REGEX=/\d\d?\d?\.\d\d?\d?\.\d\d?\d?\.\d\d?\d?/
+require 'ipaddr'
 
-ips, options = ARGV.partition { |s| s =~ IP_REGEX }
+ips, opts = ARGV.partition do |s|
+  begin
+    IPAddr.new(s)
+  rescue IPAddr::InvalidAddressError
+    false
+  end
+end
 
 if ips.size < 1
   STDERR.puts "usage: #{$0} ip-addr [dig-opt...]"
   exit 1
 end
 
-def arpa_addr(addr)
-  addr.split('.').reverse.join('.') + ".in-addr.arpa"
-end
-
-exec("dig PTR #{arpa_addr(ips[0])} #{options.join(" ")}")
+exec("dig PTR #{IPAddr.new(ips[0]).reverse} #{opts.join(" ")}")
