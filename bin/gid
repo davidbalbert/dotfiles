@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+if ARGV.size != 1
+  STDERR.puts "usage: #{$0} ip-addr"
+  exit 1
+end
+
+def arpa_addr(addr)
+  addr.split('.').reverse.join('.') + ".in-addr.arpa"
+end
+
+exec("dig PTR #{arpa_addr(ARGV[0])}")
