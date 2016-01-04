@@ -5,6 +5,7 @@ export EDITOR=vim
 
 alias ll='ls -alhFG'
 alias git=hub
+alias hf='open -a "Hex Fiend"'
 
 function dev() {
   if [ $# == 0 ]
