@@ -1,7 +1,11 @@
 #!/usr/bin/env ruby
 
-if ARGV.size != 1
-  STDERR.puts "usage: #{$0} ip-addr"
+IP_REGEX=/\d\d?\d?\.\d\d?\d?\.\d\d?\d?\.\d\d?\d?/
+
+ips, options = ARGV.partition { |s| s =~ IP_REGEX }
+
+if ips.size < 1
+  STDERR.puts "usage: #{$0} ip-addr [dig-opt...]"
   exit 1
 end
 
@@ -9,4 +13,4 @@ def arpa_addr(addr)
   addr.split('.').reverse.join('.') + ".in-addr.arpa"
 end
 
-exec("dig PTR #{arpa_addr(ARGV[0])}")
+exec("dig PTR #{arpa_addr(ips[0])} #{options.join(" ")}")
