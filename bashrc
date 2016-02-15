@@ -114,6 +114,18 @@ if [[ -f /usr/local/bin/aws ]]; then
   complete -C aws_completer aws
 fi
 
+# Wraps docker so you can add custom `docker foo` commands by adding
+# `docker-foo` to your path.
+docker() {
+  if command -v "docker-$1" > /dev/null 2>&1; then
+    subcommand=$1
+    shift
+    docker-$subcommand $@
+  else
+    command docker $@
+  fi
+}
+
 # Run if acme is running ($acme is set by ~/bin/a)
 if [ "$acme" = "true" ]; then
   PS1="\$ "

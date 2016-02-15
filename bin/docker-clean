@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+containers=$(docker ps -a -q --filter 'status=exited')
+
+if [ -n "$containers" ]; then
+  docker rm $containers
+fi
