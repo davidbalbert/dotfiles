@@ -90,6 +90,9 @@ augroup END
 autocmd BufNewFile,BufRead *.es6 let b:jsx_ext_found = 1
 autocmd BufNewFile,BufRead *.es6 set filetype=javascript
 
+" Enable vim-jsx for *.js files.
+let g:jsx_ext_required = 0
+
 let g:CommandTTraverseSCM="pwd"
 
 function! StripTrailingWhitespaces()
