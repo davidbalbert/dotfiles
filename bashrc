@@ -6,7 +6,7 @@ export EDITOR=vim
 alias ll='ls -alhFG'
 alias git=hub
 alias hf='open -a "Hex Fiend"'
-alias ag='ag --pager "less -R"'
+alias ag='ag --pager "less -RFX"'
 
 function dev() {
   if [ $# == 0 ]
