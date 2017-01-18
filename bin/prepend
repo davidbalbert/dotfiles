@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 unless ARGV.size > 0
-  STDERR.puts "usage: #{$0} string"
+  STDERR.puts "usage: #{$0} prepend_text [input_file ...]"
   exit 1
 end
 
@@ -9,6 +9,8 @@ trap :INT do
   exit 0
 end
 
-STDIN.each_line do |line|
-  puts ARGV[0] + line
+to_prepend = ARGV.shift
+
+ARGF.each_line do |line|
+  puts to_prepend + line
 end
