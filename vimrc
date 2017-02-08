@@ -93,7 +93,8 @@ autocmd BufNewFile,BufRead *.es6 set filetype=javascript
 " Enable vim-jsx for *.js files.
 let g:jsx_ext_required = 0
 
-let g:CommandTTraverseSCM="pwd"
+let g:CommandTTraverseSCM= "pwd"
+let g:CommandTFileScanner = "watchman"
 
 function! StripTrailingWhitespaces()
     let l = line(".")
