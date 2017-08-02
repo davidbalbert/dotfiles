@@ -1,11 +1,10 @@
-export PATH=$HOME/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/bin:/Applications/Postgres.app/Contents/Versions/9.5/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export SVN_EDITOR=vim
 export LC_CTYPE=en_US.UTF-8
 export EDITOR=vim
 
 alias ll='ls -alhFG'
 alias git=hub
-alias hf='open -a "Hex Fiend"'
 alias ag='ag --pager "less -RFX"'
 
 function dev() {
@@ -89,19 +88,11 @@ export GOPATH=~/Development/gopath
 PLAN9=/usr/local/plan9 export PLAN9
 PATH=$PATH:$PLAN9/bin export PATH
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
 # OCaml
 if [[ -f /usr/local/bin/opam ]]; then
   eval `opam config env`
   # OPAM configuration
   . /Users/david/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-fi
-
-# Racket
-if [[ -d /Applications/Racket\ v6.1/bin ]]; then
-  PATH=$PATH:/Applications/Racket\ v6.1/bin
 fi
 
 # Cabal
