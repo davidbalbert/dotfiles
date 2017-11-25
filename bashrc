@@ -118,6 +118,10 @@ docker() {
   fi
 }
 
+# jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
 # Run if acme is running ($acme is set by ~/bin/a)
 if [ "$acme" = "true" ]; then
   PS1="\$ "
