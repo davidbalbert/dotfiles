@@ -9,6 +9,7 @@ DOTFILES="
   bashrc
   ctags
   editrc
+  gdbinit
   gemrc
   gvimrc
   inputrc
