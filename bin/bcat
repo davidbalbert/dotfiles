@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+browser="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+tempfile=$(mktemp)
+
+cat > $tempfile
+"$browser" $tempfile >/dev/null 2>&1
+rm $tempfile
