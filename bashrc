@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:/Applications/Postgres.app/Contents/Versions/9.5/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/bin:/Applications/Postgres.app/Contents/Versions/10/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export SVN_EDITOR=vim
 export LC_CTYPE=en_US.UTF-8
 export EDITOR=vim
