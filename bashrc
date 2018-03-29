@@ -69,36 +69,13 @@ GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
 PS1='\h:\w$(__git_ps1 " [%s]")\$ '
 
-# node.js
-if which node >/dev/null 2>&1; then
-  PATH=/usr/local/share/npm/bin:$PATH
-fi
-
-# virtualenvwrapper
-if [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
-  export WORKON_HOME=~/.virtualenvs
-  [[ ! -d $WORKON_HOME ]] && mkdir $WORKON_HOME
-  source /usr/local/bin/virtualenvwrapper.sh
-fi
-
-# Go
-export GOPATH=~/Development/gopath
-
 # plan9port
 PLAN9=/usr/local/plan9 export PLAN9
 PATH=$PATH:$PLAN9/bin export PATH
 
-# OCaml
-if [[ -f /usr/local/bin/opam ]]; then
-  eval `opam config env`
-  # OPAM configuration
-  . /Users/david/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
-fi
-
-# Cabal
-if [[ -d $HOME/.cabal/bin ]]; then
-  PATH=$HOME/.cabal/bin:$PATH
-fi
+# jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
 
@@ -117,10 +94,6 @@ docker() {
     command docker $@
   fi
 }
-
-# jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
 
 # Run if acme is running ($acme is set by ~/bin/a)
 if [ "$acme" = "true" ]; then
