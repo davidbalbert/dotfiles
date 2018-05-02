@@ -4,7 +4,10 @@ set -e
 
 browser="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 tempfile=$(mktemp)
+htmlfile=$tempfile.html
 
-cat > $tempfile
-"$browser" $tempfile >/dev/null 2>&1
-rm $tempfile
+mv $tempfile $htmlfile
+
+cat > $htmlfile
+"$browser" $htmlfile >/dev/null 2>&1
+rm $htmlfile
