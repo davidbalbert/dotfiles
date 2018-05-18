@@ -1,0 +1,15 @@
+[user]
+	name = David Albert
+	email = davidbalbert@gmail.com
+[ui]
+	color = auto
+[hub]
+	protocol = https
+[credential]
+	helper = osxkeychain
+[core]
+	excludesfile = /Users/david/.gitignore_global
+[push]
+	default = simple
+[alias]
+    recent-branches = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'

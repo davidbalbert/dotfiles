@@ -11,6 +11,8 @@ DOTFILES="
   editrc
   gdbinit
   gemrc
+  gitconfig
+  gitignore_global
   gvimrc
   inputrc
   ocamlinit
