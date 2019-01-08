@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+images=$(docker images | tail -n +2 | awk '{ print $3 }')
+
+if [ -n "$images" ]; then
+  docker rmi $images
+fi
