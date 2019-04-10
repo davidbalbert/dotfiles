@@ -22,11 +22,11 @@ DOTFILES="
 "
 
 for f in $DOTFILES; do
-  ln -s "$DIR/$f" "~/.$f"
+  ln -s "$DIR/$f" ~
 done
 
 mkdir -p ~/bin
 
-for f in `ls $DIR/bin`; do
-  ln -s $DIR/bin/$f ~/bin/$f
+for f in $DIR/bin/*; do
+  ln -s "$f" ~/bin
 done
