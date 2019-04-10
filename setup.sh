@@ -21,16 +21,8 @@ DOTFILES="
   vim
 "
 
-NON_DOTFILES="
-  lib
-"
-
 for f in $DOTFILES; do
-  ln -s $DIR/$f ~/.$f
-done
-
-for f in $NON_DOTFILES; do
-  ln -s $DIR/$f ~/$f
+  ln -s "$DIR/$f" "~/.$f"
 done
 
 mkdir -p ~/bin

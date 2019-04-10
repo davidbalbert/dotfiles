@@ -56,22 +56,10 @@ function up() { # cd to root of repository
   done
 }
 
-# path prompt
-rvm_path() {
-  local prompt=$(~/.rvm/bin/rvm-prompt)
-  if [[ $prompt != "" ]]; then
-    printf "[$prompt] "
-  fi
-}
-
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
 PS1='\h:\w$(__git_ps1 " [%s]")\$ '
-
-# plan9port
-PLAN9=/usr/local/plan9 export PLAN9
-PATH=$PATH:$PLAN9/bin export PATH
 
 # jenv
 export PATH="$HOME/.jenv/bin:$PATH"
@@ -95,17 +83,5 @@ docker() {
   fi
 }
 
-# Run if acme is running ($acme is set by ~/bin/a)
-if [ "$acme" = "true" ]; then
-  PS1="\$ "
-  EDITOR=E
-
-  cd ()
-  {
-    __zsh_like_cd cd "$@"
-    awd
-  }
-fi
-
 # heroku autocomplete setup
-HEROKU_AC_BASH_SETUP_PATH=/Users/david/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;. "/Users/david/.acme.sh/acme.sh.env"
+HEROKU_AC_BASH_SETUP_PATH=/Users/david/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;
