@@ -4,6 +4,8 @@ pushd `dirname $0` > /dev/null
 DIR=`pwd`
 popd > /dev/null
 
+DEST=${DEST:-~}
+
 DOTFILES="
   bash_profile
   bashrc
@@ -23,11 +25,11 @@ DOTFILES="
 "
 
 for f in $DOTFILES; do
-  ln -s "$DIR/$f" "~/.$f"
+  ln -sfn "$DIR/$f" "$DEST/.$f"
 done
 
-mkdir -p ~/bin
+mkdir -p "$DEST/bin"
 
 for f in $DIR/bin/*; do
-  ln -s "$f" ~/bin
+  ln -sfn "$f" $DEST/bin
 done
