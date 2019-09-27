@@ -31,5 +31,5 @@ done
 mkdir -p "$DEST/bin"
 
 for f in $DIR/bin/*; do
-  ln -sfn "$f" $DEST/bin
+  ln -sfn "$f" "$DEST/bin"
 done
