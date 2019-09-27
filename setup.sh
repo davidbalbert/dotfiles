@@ -16,13 +16,14 @@ DOTFILES="
   gvimrc
   inputrc
   ocamlinit
+  sqliterc
   tmux.conf
   vimrc
   vim
 "
 
 for f in $DOTFILES; do
-  ln -s "$DIR/$f" ~
+  ln -s "$DIR/$f" "~/.$f"
 done
 
 mkdir -p ~/bin
