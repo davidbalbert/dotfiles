@@ -13,3 +13,5 @@
 	default = simple
 [alias]
     recent-branches = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+[pull]
+	rebase = false

@@ -11,6 +11,7 @@ DOTFILES="
   bashrc
   ctags
   editrc
+  editorconfig
   gdbinit
   gemrc
   gitconfig
