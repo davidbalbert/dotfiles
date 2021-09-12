@@ -65,10 +65,15 @@ PS1='\h:\w$(__git_ps1 " [%s]")\$ '
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
-if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+# if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"
+
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
+
+chruby ruby-3.0.2
 
 if [[ -f /usr/local/bin/aws ]]; then
   complete -C aws_completer aws
