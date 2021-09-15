@@ -71,9 +71,10 @@ eval "$(jenv init -)"
 # export PATH="$PATH:$HOME/.rvm/bin"
 
 source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
-
+# Set the default Ruby. Must be before sourcing auto.sh. Otherwise it will override autodetection in new tabs.
 chruby ruby-3.0.2
+
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
 if [[ -f /usr/local/bin/aws ]]; then
   complete -C aws_completer aws
