@@ -1,8 +1,8 @@
-#!/bin/sh -x
+#!/bin/sh
 
 LOCAL=$2
 REMOTE=$1
 MERGED=$(mktemp)
-if ksdiff --merge --output "$MERGED" -- "$LOCAL" --snapshot "$REMOTE" --snapshot; then
+if ksdiff --merge --output "$MERGED" -- "$LOCAL" "$REMOTE" --snapshot; then
   mv $MERGED $LOCAL
 fi
