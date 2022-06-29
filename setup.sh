@@ -23,6 +23,7 @@ DOTFILES="
   tmux.conf
   vimrc
   vim
+  zprofile
 "
 
 for f in $DOTFILES; do

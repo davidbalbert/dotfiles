@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:/Applications/Postgres.app/Contents/Versions/13/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export SVN_EDITOR=vim
 export LC_CTYPE=en_US.UTF-8
 export EDITOR=vim
@@ -7,12 +7,19 @@ alias ll='ls -alhFG'
 alias git=hub
 alias ag='ag --pager "less -RFX"'
 
+if [ -f /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+
+  export CPATH=/opt/homebrew/include:$CPATH
+  export LIBRARY_PATH=/opt/homebrew/lib:$LIBRARY_PATH
+fi
+
 function dev() {
   if [ $# == 0 ]
   then
-    cd ~/Development
+    cd ~/Developer
   else
-    cd ~/Development/$1
+    cd ~/Developer/$1
   fi
 }
 
@@ -21,7 +28,7 @@ function _dev() {
   cur="${COMP_WORDS[COMP_CWORD]}"
 
   if [ $COMP_CWORD == 1 ]; then
-    COMPREPLY=( $(compgen -W "$(ls ~/Development)" -- $cur) )
+    COMPREPLY=( $(compgen -W "$(ls ~/Developer)" -- $cur) )
   else
     COMPREPLY=()
   fi
@@ -29,8 +36,8 @@ function _dev() {
 
 complete -F _dev dev
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
+if [ -f $HOMEBREW_PREFIX/etc/bash_completion ]; then
+  source $HOMEBREW_PREFIX/etc/bash_completion
 fi
 
 # ec2 setup
@@ -59,25 +66,31 @@ function up() { # cd to root of repository
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
-PS1='\h:\w$(__git_ps1 " [%s]")\$ '
+PS1='\h:\w$(__git_ps1 " [%s]")'
+
+if [[ "online" = "${SANDBOX_MODE_NETWORK:-online}" ]]; then
+    PS1+=" 📡"
+fi
+
+if [[ -r "$HOME" ]]; then
+    PS1+=" 🏠"
+fi
+
+PS1+=' \$ '
 
 # jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+#export PATH="$HOME/.jenv/bin:$PATH"
+#eval "$(jenv init -)"
 
-# if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+if [ -f $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh ]; then
+  source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
+fi
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
-
-source /usr/local/opt/chruby/share/chruby/chruby.sh
 # Set the default Ruby. Must be before sourcing auto.sh. Otherwise it will override autodetection in new tabs.
-chruby ruby-3.0.2
+chruby ruby-3.1.2
 
-source /usr/local/opt/chruby/share/chruby/auto.sh
-
-if [[ -f /usr/local/bin/aws ]]; then
-  complete -C aws_completer aws
+if [ -f $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh ]; then
+  source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
 fi
 
 # Wraps docker so you can add custom `docker foo` commands by adding
@@ -91,7 +104,3 @@ docker() {
     command docker $@
   fi
 }
-
-# heroku autocomplete setup
-HEROKU_AC_BASH_SETUP_PATH=/Users/david/Library/Caches/heroku/autocomplete/bash_setup && test -f $HEROKU_AC_BASH_SETUP_PATH && source $HEROKU_AC_BASH_SETUP_PATH;
-
