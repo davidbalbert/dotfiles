@@ -2,6 +2,7 @@ export PATH=$HOME/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/u
 export SVN_EDITOR=vim
 export LC_CTYPE=en_US.UTF-8
 export EDITOR=vim
+export THOR_MERGE=thor-ksdiff
 
 alias ll='ls -alhFG'
 alias git=hub
