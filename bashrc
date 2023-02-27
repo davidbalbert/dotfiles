@@ -1,13 +1,14 @@
-export PATH=$HOME/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$HOME/bin:$HOME/go/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export SVN_EDITOR=vim
 export LC_CTYPE=en_US.UTF-8
 export EDITOR=vim
 export THOR_MERGE=thor-ksdiff
 
 alias ll='ls -alhFG'
-alias git=hub
 alias ag='ag --pager "less -RFX"'
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+alias nerdctl=nerdctl.lima
+alias ruby-install="ruby-install --cleanup --src-dir /tmp"
 
 if [ -f /opt/homebrew/bin/brew ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -81,15 +82,15 @@ fi
 PS1+=' \$ '
 
 # jenv
-#export PATH="$HOME/.jenv/bin:$PATH"
-#eval "$(jenv init -)"
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
 if [ -f $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh ]; then
   source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
 fi
 
 # Set the default Ruby. Must be before sourcing auto.sh. Otherwise it will override autodetection in new tabs.
-chruby ruby-3.1.2
+chruby ruby-3.2.1
 
 if [ -f $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh ]; then
   source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
@@ -106,3 +107,7 @@ docker() {
     command docker $@
   fi
 }
+
+if [[ -f "$HOME/.cargo/env" ]]; then
+  source "$HOME/.cargo/env"
+fi
