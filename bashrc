@@ -8,7 +8,6 @@ alias ag='ag --pager "less -RFX"'
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias ruby-install="ruby-install --cleanup --src-dir /tmp"
 
-
 PATH="/usr/local/sbin:$PATH"
 PATH="/usr/local/bin:$PATH"
 PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
@@ -25,7 +24,7 @@ if [ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]; then
   source "/opt/homebrew/etc/profile.d/bash_completion.sh"
 fi
 
-export PATH="$HOME/.jenv/bin:$PATH"
+PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
 if [ -f "$HOME/.cargo/env" ]; then
@@ -42,23 +41,27 @@ GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
 PS1='\h:\w$(__git_ps1 " [%s]") \$ '
 
-if [ -f $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh ]; then
-  source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
+if [ -f "$HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh" ]; then
+  source "$HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh"
 fi
 
 # Set the default Ruby. Must be before sourcing auto.sh. Otherwise it will override autodetection in new tabs.
 chruby ruby-3.3.5
 
-if [ -f $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh ]; then
-  source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
+if [ -f "$HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh" ]; then
+  source "$HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh"
 fi
 
 function dev() {
+  if [ ! -d "$HOME/Developer" ]; then
+    return
+  fi
+
   if [ $# == 0 ]
   then
-    cd ~/Developer
+    cd "$HOME/Developer" || exit
   else
-    cd ~/Developer/$1
+    cd "$HOME/Developer/$1" || exit
   fi
 }
 
@@ -66,8 +69,8 @@ function _dev() {
   local cur
   cur="${COMP_WORDS[COMP_CWORD]}"
 
-  if [ $COMP_CWORD == 1 ]; then
-    COMPREPLY=( $(compgen -W "$(ls ~/Developer)" -- $cur) )
+  if [ "$COMP_CWORD" == 1 ]; then
+    COMPREPLY=( $(compgen -W "$(ls ~/Developer)" -- "$cur") )
   else
     COMPREPLY=()
   fi
@@ -78,10 +81,10 @@ complete -F _dev dev
 
 function up() { # cd to root of repository
   old_pwd="$PWD";
-  while [ 1 ]; do
+  while true; do
     cd ..
     if [ "$PWD" == "/" ]; then
-      cd "$old_pwd"
+      cd "$old_pwd" || exit
       return 1
     fi
     for repo in ".git" ".hg"; do
