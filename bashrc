@@ -1,4 +1,3 @@
-export PATH=$HOME/bin:$HOME/go/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/usr/local/bin:/usr/local/sbin:$PATH
 export SVN_EDITOR=vim
 export LC_CTYPE=en_US.UTF-8
 export EDITOR=vim
@@ -7,8 +6,14 @@ export THOR_MERGE=thor-ksdiff
 alias ll='ls -alhFG'
 alias ag='ag --pager "less -RFX"'
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
-alias nerdctl=nerdctl.lima
 alias ruby-install="ruby-install --cleanup --src-dir /tmp"
+
+
+PATH="/usr/local/sbin:$PATH"
+PATH="/usr/local/bin:$PATH"
+PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+PATH="$HOME/go/bin:$PATH"
+PATH="$HOME/bin:$PATH"
 
 set -o vi
 
