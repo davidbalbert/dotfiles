@@ -10,11 +10,42 @@ alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias nerdctl=nerdctl.lima
 alias ruby-install="ruby-install --cleanup --src-dir /tmp"
 
+set -o vi
+
 if [ -f /opt/homebrew/bin/brew ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
-  export CPATH=/opt/homebrew/include:$CPATH
-  export LIBRARY_PATH=/opt/homebrew/lib:$LIBRARY_PATH
+if [ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]; then
+  source "/opt/homebrew/etc/profile.d/bash_completion.sh"
+fi
+
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+if [ -f "$HOME/.cargo/env" ]; then
+  source "$HOME/.cargo/env"
+fi
+
+# Added by OrbStack: command-line tools and integration
+# Comment this line if you don't want it to be added again.
+source ~/.orbstack/shell/init.bash 2>/dev/null || :
+
+
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+PS1='\h:\w$(__git_ps1 " [%s]") \$ '
+
+if [ -f $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh ]; then
+  source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
+fi
+
+# Set the default Ruby. Must be before sourcing auto.sh. Otherwise it will override autodetection in new tabs.
+chruby ruby-3.3.5
+
+if [ -f $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh ]; then
+  source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
 fi
 
 function dev() {
@@ -39,16 +70,6 @@ function _dev() {
 
 complete -F _dev dev
 
-if [ -f $HOMEBREW_PREFIX/etc/bash_completion ]; then
-  source $HOMEBREW_PREFIX/etc/bash_completion
-fi
-
-# ec2 setup
-if [ -f ~/.ec2/setup_ec2 ]; then
-  source ~/.ec2/setup_ec2
-fi
-
-set -o vi
 
 function up() { # cd to root of repository
   old_pwd="$PWD";
@@ -65,49 +86,3 @@ function up() { # cd to root of repository
     done
   done
 }
-
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWSTASHSTATE=true
-GIT_PS1_SHOWUNTRACKEDFILES=true
-PS1='\h:\w$(__git_ps1 " [%s]")'
-
-if [[ "online" = "${SANDBOX_MODE_NETWORK:-online}" ]]; then
-    PS1+=" 📡"
-fi
-
-if [[ -r "$HOME" ]]; then
-    PS1+=" 🏠"
-fi
-
-PS1+=' \$ '
-
-# jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
-
-if [ -f $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh ]; then
-  source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
-fi
-
-# Set the default Ruby. Must be before sourcing auto.sh. Otherwise it will override autodetection in new tabs.
-chruby ruby-3.2.1
-
-if [ -f $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh ]; then
-  source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
-fi
-
-# Wraps docker so you can add custom `docker foo` commands by adding
-# `docker-foo` to your path.
-docker() {
-  if command -v "docker-$1" > /dev/null 2>&1; then
-    subcommand=$1
-    shift
-    docker-$subcommand $@
-  else
-    command docker $@
-  fi
-}
-
-if [[ -f "$HOME/.cargo/env" ]]; then
-  source "$HOME/.cargo/env"
-fi
